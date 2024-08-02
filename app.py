@@ -36,3 +36,30 @@ class Game:
 
         self.clickX = -1
         self.clickY = -1
+
+
+    def callback(self, event):
+        x = event.x/self.canvas.winfo_width()
+        y = event.y/self.canvas.winfo_height()
+
+        self.clickX = x
+        self.clickY = y 
+
+    def spherical_distance(self, RA1, DEC1, RA2, DEC2):
+        RA1 = math.radians(RA1*15)
+        DEC1 = math.radians(DEC1)
+        RA2 = math.radians(RA2*15)
+        DEC2 = math.radians(DEC2)
+        return math.acos(math.sin(DEC1)*math.sin(DEC2)+math.cos(DEC1)*math.cos(DEC2)*math.cos(RA1-RA2))
+
+    def start(self):
+        self.canvas.bind("<Button-1>", self.callback)
+        while (1):
+            constellation = random.choice(self.constellations)
+            self.label.config(text='Click on constellation: '+constellation.nameLAT)
+            self.root.update()
+
+            
+
+game = Game()
+game.start()
