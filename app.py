@@ -59,6 +59,7 @@ class Game:
             self.label.config(text='Click on constellation: '+constellation.nameLAT)
             self.root.update()
 
+
             # register click
             while (self.clickX == -1):
                 self.root.update()
@@ -71,6 +72,9 @@ class Game:
             clickRA = 24*(1-x)
             clickDEC = 180*(1-y)-90
             
+
+
+
             distance = self.spherical_distance(constellation.RA, constellation.DEC, clickRA, clickDEC)*180/math.pi
 
             realX = (24-constellation.RA)/24
@@ -84,9 +88,14 @@ class Game:
 
             self.root.update()
             
-
+            while (self.clickX == -1):
+                self.root.update()
+            self.clickX = -1
+            self.clickY = -1
 
             self.canvas.delete('all')
+
+
 
 
 game = Game()
