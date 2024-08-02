@@ -46,8 +46,8 @@ class Game:
         self.clickY = y 
 
     def spherical_distance(self, RA1, DEC1, RA2, DEC2):
-        RA1 = math.radians(RA1*15)
-        DEC1 = math.radians(DEC1)
+        RA1 = math.radians(RA1*15) # mercant projection 
+        DEC1 = math.radians(DEC1) 
         RA2 = math.radians(RA2*15)
         DEC2 = math.radians(DEC2)
         return math.acos(math.sin(DEC1)*math.sin(DEC2)+math.cos(DEC1)*math.cos(DEC2)*math.cos(RA1-RA2))
@@ -59,7 +59,35 @@ class Game:
             self.label.config(text='Click on constellation: '+constellation.nameLAT)
             self.root.update()
 
+            # register click
+            while (self.clickX == -1):
+                self.root.update()
+                
+            x = self.clickX
+            y = self.clickY
+            self.clickX = -1
+            self.clickY = -1
+
+            clickRA = 24*(1-x)
+            clickDEC = 180*(1-y)-90
             
+            distance = self.spherical_distance(constellation.RA, constellation.DEC, clickRA, clickDEC)*180/math.pi
+
+            realX = (24-constellation.RA)/24
+            realY = (90-constellation.DEC)/180
+            print(constellation.RA, constellation.DEC,clickRA, clickDEC)
+            canvas_width = self.canvas.winfo_width()
+            canvas_height = self.canvas.winfo_height()
+            self.canvas.create_oval(realX*canvas_width-5, realY*canvas_height-5, realX*canvas_width+5, realY*canvas_height+5, fill='red')
+
+            self.label.config(text=f"Constellation: {constellation.code}/{constellation.nameEN}/{constellation.nameLAT}, MainStar: {constellation.mainstar}, Distance: {distance:.2f} degrees")
+
+            self.root.update()
+            
+
+
+            self.canvas.delete('all')
+
 
 game = Game()
 game.start()
