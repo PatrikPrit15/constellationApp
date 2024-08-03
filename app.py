@@ -85,7 +85,7 @@ class Game:
                                     realX * canvas_width + 5, realY * canvas_height + 5, fill='red')
 
             self.result_label.config(text=f"Constellation: {constellation.code}/{constellation.nameEN}/{constellation.nameLAT}, "
-                                          f"Main Star: {constellation.mainstar}, Distance: {distance:.2f} degrees")
+                                          f"Alpha Star: {constellation.mainstar}, Distance: {distance:.2f} degrees")
 
             self.root.update()
             
