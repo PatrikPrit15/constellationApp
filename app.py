@@ -33,9 +33,9 @@ class Game:
         self.style.configure('TButton', font=('Helvetica', 14), background='#2e3f4f', foreground='white')
         self.style.configure('TCanvas', background='#0d1b2a')
 
-        self.image_path = './uma (1).jpg'  # Update with your image path
+        self.image_path = './map.png'  # Update with your image path
         self.image = Image.open(self.image_path)
-        self.image = self.image.resize((int(self.root.winfo_screenwidth() * 0.8), int(self.root.winfo_screenheight() * 0.7)))
+        self.image = self.image.resize((int(self.root.winfo_screenwidth() * 0.5), int(self.root.winfo_screenheight() * 0.52)))
         self.bg_image = ImageTk.PhotoImage(self.image)
 
         # Create canvas
@@ -75,7 +75,10 @@ class Game:
             # register click
             while self.clickX == -1:
                 self.root.update()
-                
+
+            self.canvas.create_image(0, 0, anchor=tk.NW, image=self.bg_image)
+
+
             x = self.clickX
             y = self.clickY
             self.clickX = -1
@@ -95,6 +98,7 @@ class Game:
             self.result_label.config(text=f"Constellation: {constellation.code}/{constellation.nameEN}/{constellation.nameLAT}, "
                                           f"Alpha Star: {constellation.mainstar}, Distance: {distance:.2f} degrees")
 
+
             self.root.update()
             
             while self.clickX == -1:
@@ -103,7 +107,7 @@ class Game:
             self.clickY = -1
 
             self.canvas.delete('all')
-            self.canvas.create_image(0, 0, anchor=tk.NW, image=self.bg_image)
+            self.result_label.config(text="")
 
 
 game = Game()
