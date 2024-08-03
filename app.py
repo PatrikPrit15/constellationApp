@@ -24,12 +24,12 @@ class Game:
 
         self.root = tk.Tk()
         self.root.title('Astro Game')
-        self.root.geometry('800x600')
+        self.root.geometry('1200x800')
         self.root.config(bg='#2e3f4f')
 
         self.style = ttk.Style()
-        self.style.configure('TLabel', font=('Helvetica', 12), background='#2e3f4f', foreground='white')
-        self.style.configure('TButton', font=('Helvetica', 12), background='#2e3f4f', foreground='white')
+        self.style.configure('TLabel', font=('Helvetica', 14), background='#2e3f4f', foreground='white')
+        self.style.configure('TButton', font=('Helvetica', 14), background='#2e3f4f', foreground='white')
         self.style.configure('TCanvas', background='#0d1b2a')
 
         self.canvas = tk.Canvas(self.root, bg='#0d1b2a', highlightthickness=0)
