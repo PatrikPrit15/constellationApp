@@ -35,7 +35,7 @@ class Game:
 
         self.image_path = './map.png'  # Update with your image path
         self.image = Image.open(self.image_path)
-        self.image = self.image.resize((int(self.root.winfo_screenwidth() * 0.5), int(self.root.winfo_screenheight() * 0.52)))
+        self.image = self.image.resize((int(self.root.winfo_screenwidth() * 0.8), int(self.root.winfo_screenheight() * 0.64)))
         self.bg_image = ImageTk.PhotoImage(self.image)
 
         # Create canvas
