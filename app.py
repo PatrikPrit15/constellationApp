@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 import random
 import math
+from PIL import Image, ImageTk  # Use PIL for more image format support
 
 class Constellation:
     def __init__(self, constellationPD):
@@ -32,8 +33,15 @@ class Game:
         self.style.configure('TButton', font=('Helvetica', 14), background='#2e3f4f', foreground='white')
         self.style.configure('TCanvas', background='#0d1b2a')
 
+        self.image_path = './uma (1).jpg'  # Update with your image path
+        self.image = Image.open(self.image_path)
+        self.image = self.image.resize((int(self.root.winfo_screenwidth() * 0.8), int(self.root.winfo_screenheight() * 0.7)))
+        self.bg_image = ImageTk.PhotoImage(self.image)
+
+        # Create canvas
         self.canvas = tk.Canvas(self.root, bg='#0d1b2a', highlightthickness=0)
         self.canvas.place(relx=0.1, rely=0.2, relwidth=0.8, relheight=0.7)
+        # self.canvas.create_image(0, 0, anchor=tk.NW, image=self.bg_image)
 
         self.label = ttk.Label(self.root, text='Click on the constellation:')
         self.label.place(relx=0.1, rely=0.05, relwidth=0.8, relheight=0.05)
@@ -95,6 +103,8 @@ class Game:
             self.clickY = -1
 
             self.canvas.delete('all')
+            self.canvas.create_image(0, 0, anchor=tk.NW, image=self.bg_image)
+
 
 game = Game()
 game.start()
