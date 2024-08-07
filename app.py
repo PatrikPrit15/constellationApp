@@ -41,7 +41,6 @@ class Game:
         # Create canvas
         self.canvas = tk.Canvas(self.root, bg='#0d1b2a', highlightthickness=0)
         self.canvas.place(relx=0.1, rely=0.2, relwidth=0.8, relheight=0.7)
-        # self.canvas.create_image(0, 0, anchor=tk.NW, image=self.bg_image)
 
         self.label = ttk.Label(self.root, text='Click on the constellation:')
         self.label.place(relx=0.1, rely=0.05, relwidth=0.8, relheight=0.05)
@@ -78,7 +77,6 @@ class Game:
 
             self.canvas.create_image(0, 0, anchor=tk.NW, image=self.bg_image)
 
-
             x = self.clickX
             y = self.clickY
             self.clickX = -1
@@ -98,7 +96,6 @@ class Game:
             self.result_label.config(text=f"Constellation: {constellation.code}/{constellation.nameEN}/{constellation.nameLAT}, "
                                           f"Alpha Star: {constellation.mainstar}, Distance: {distance:.2f} degrees")
 
-
             self.root.update()
             
             while self.clickX == -1:
@@ -108,7 +105,6 @@ class Game:
 
             self.canvas.delete('all')
             self.result_label.config(text="")
-
 
 game = Game()
 game.start()
